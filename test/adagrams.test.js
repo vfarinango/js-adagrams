@@ -121,7 +121,7 @@ describe("Adagrams", () => {
     });
 
     it("returns a score of 0 if given an empty input", () => {
-      throw "Complete test";
+      expectScores({});
     });
 
     it("adds an extra 8 points if word is 7 or more characters long", () => {
@@ -133,6 +133,7 @@ describe("Adagrams", () => {
       });
     });
   });
+
 
   describe.skip("highestScoreFrom", () => {
     it("returns a hash that contains the word and score of best word in an array", () => {
