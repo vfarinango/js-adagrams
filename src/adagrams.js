@@ -32,8 +32,33 @@ export const drawLetters = () => {
   return letterHand;
 };
 
+
+export const getFrequencyMap = (collection) => {
+  let frequencyMap = {};
+  
+  for (const char of collection) {
+    if (char in frequencyMap) {
+      frequencyMap[char] += 1;
+    } else {
+      frequencyMap[char] = 1;
+    };
+  };
+  return frequencyMap
+};
+
 export const usesAvailableLetters = (input, lettersInHand) => {
-  // Implement this method for wave 2
+  const uppercasedInput = input.toUpperCase();
+  
+  const wordFreq = getFrequencyMap(uppercasedInput);
+  const handFreq = getFrequencyMap(lettersInHand);
+
+  for (const key of Object.keys(wordFreq)) {
+    if (!(key in handFreq) || wordFreq[key] > handFreq[key]) {
+      return false;
+    };
+  };
+
+  return true;
 };
 
 export const scoreWord = (word) => {
