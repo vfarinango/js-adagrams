@@ -84,5 +84,21 @@ export const scoreWord = (word) => {
 
 
 export const highestScoreFrom = (words) => {
-  // Implement this method for wave 4
+  let currentBest = null;
+
+  for (const word of words) {
+    let wordScore = scoreWord(word);
+
+    if (currentBest === null || wordScore > currentBest.score) {
+      currentBest = { "word": word, "score": wordScore };
+    } else if (wordScore === currentBest.score) {
+
+      if ((word.length === 10 && currentBest.word.length !== 10) || 
+      (currentBest.word.length > word.length && currentBest.word.length !== 10)) {
+        currentBest = {"word": word, "score": wordScore};
+      };
+    };
+  };
+
+  return currentBest;
 };
